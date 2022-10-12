@@ -33,21 +33,21 @@
             this.labelServiceProblem = new System.Windows.Forms.Label();
             this.textBoxClientName = new System.Windows.Forms.TextBox();
             this.textBoxDroneModel = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxServiceProblem = new System.Windows.Forms.TextBox();
             this.labelServiceCost = new System.Windows.Forms.Label();
             this.textBoxServiceCost = new System.Windows.Forms.TextBox();
             this.labelServiceText = new System.Windows.Forms.Label();
             this.numericUpDownServiceTag = new System.Windows.Forms.NumericUpDown();
-            this.buttonEnqueue = new System.Windows.Forms.Button();
+            this.buttonAddNewItem = new System.Windows.Forms.Button();
             this.groupBoxQueue = new System.Windows.Forms.GroupBox();
-            this.radioButtonRegular = new System.Windows.Forms.RadioButton();
             this.radioButtonExpress = new System.Windows.Forms.RadioButton();
+            this.radioButtonRegular = new System.Windows.Forms.RadioButton();
             this.listViewRegularQueue = new System.Windows.Forms.ListView();
+            this.columnHeaderClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewExpressQueue = new System.Windows.Forms.ListView();
             this.listBoxFinishedList = new System.Windows.Forms.ListBox();
             this.labelFinishedList = new System.Windows.Forms.Label();
             this.buttonRemoveFromExpressQueue = new System.Windows.Forms.Button();
-            this.columnHeaderClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonRemoveFromRegularQueue = new System.Windows.Forms.Button();
             this.labelRegularQueue = new System.Windows.Forms.Label();
             this.labelExpressQueue = new System.Windows.Forms.Label();
@@ -97,13 +97,13 @@
             this.textBoxDroneModel.Size = new System.Drawing.Size(287, 20);
             this.textBoxDroneModel.TabIndex = 3;
             // 
-            // textBox1
+            // textBoxServiceProblem
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 46);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(349, 102);
-            this.textBox1.TabIndex = 5;
+            this.textBoxServiceProblem.Location = new System.Drawing.Point(106, 46);
+            this.textBoxServiceProblem.Multiline = true;
+            this.textBoxServiceProblem.Name = "textBoxServiceProblem";
+            this.textBoxServiceProblem.Size = new System.Drawing.Size(349, 102);
+            this.textBoxServiceProblem.TabIndex = 5;
             // 
             // labelServiceCost
             // 
@@ -137,14 +137,15 @@
             this.numericUpDownServiceTag.Size = new System.Drawing.Size(100, 20);
             this.numericUpDownServiceTag.TabIndex = 9;
             // 
-            // buttonEnqueue
+            // buttonAddNewItem
             // 
-            this.buttonEnqueue.Location = new System.Drawing.Point(831, 125);
-            this.buttonEnqueue.Name = "buttonEnqueue";
-            this.buttonEnqueue.Size = new System.Drawing.Size(75, 23);
-            this.buttonEnqueue.TabIndex = 11;
-            this.buttonEnqueue.Text = "ENQUEUE";
-            this.buttonEnqueue.UseVisualStyleBackColor = true;
+            this.buttonAddNewItem.Location = new System.Drawing.Point(802, 125);
+            this.buttonAddNewItem.Name = "buttonAddNewItem";
+            this.buttonAddNewItem.Size = new System.Drawing.Size(104, 23);
+            this.buttonAddNewItem.TabIndex = 11;
+            this.buttonAddNewItem.Text = "ADD NEW ITEM";
+            this.buttonAddNewItem.UseVisualStyleBackColor = true;
+            this.buttonAddNewItem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AddNewItem);
             // 
             // groupBoxQueue
             // 
@@ -156,6 +157,16 @@
             this.groupBoxQueue.TabIndex = 10;
             this.groupBoxQueue.TabStop = false;
             this.groupBoxQueue.Text = "Queue:";
+            // 
+            // radioButtonExpress
+            // 
+            this.radioButtonExpress.AutoSize = true;
+            this.radioButtonExpress.Location = new System.Drawing.Point(136, 19);
+            this.radioButtonExpress.Name = "radioButtonExpress";
+            this.radioButtonExpress.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonExpress.TabIndex = 1;
+            this.radioButtonExpress.Text = "Express";
+            this.radioButtonExpress.UseVisualStyleBackColor = true;
             // 
             // radioButtonRegular
             // 
@@ -169,16 +180,6 @@
             this.radioButtonRegular.Text = "Regular";
             this.radioButtonRegular.UseVisualStyleBackColor = true;
             // 
-            // radioButtonExpress
-            // 
-            this.radioButtonExpress.AutoSize = true;
-            this.radioButtonExpress.Location = new System.Drawing.Point(136, 19);
-            this.radioButtonExpress.Name = "radioButtonExpress";
-            this.radioButtonExpress.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonExpress.TabIndex = 1;
-            this.radioButtonExpress.Text = "Express";
-            this.radioButtonExpress.UseVisualStyleBackColor = true;
-            // 
             // listViewRegularQueue
             // 
             this.listViewRegularQueue.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -190,6 +191,11 @@
             this.listViewRegularQueue.TabIndex = 13;
             this.listViewRegularQueue.UseCompatibleStateImageBehavior = false;
             this.listViewRegularQueue.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderClientName
+            // 
+            this.columnHeaderClientName.Text = "Client Name";
+            this.columnHeaderClientName.Width = 137;
             // 
             // listViewExpressQueue
             // 
@@ -226,11 +232,6 @@
             this.buttonRemoveFromExpressQueue.TabIndex = 17;
             this.buttonRemoveFromExpressQueue.Text = "REMOVE FROM EXPRESS QUEUE";
             this.buttonRemoveFromExpressQueue.UseVisualStyleBackColor = true;
-            // 
-            // columnHeaderClientName
-            // 
-            this.columnHeaderClientName.Text = "Client Name";
-            this.columnHeaderClientName.Width = 137;
             // 
             // buttonRemoveFromRegularQueue
             // 
@@ -283,12 +284,12 @@
             this.Controls.Add(this.labelFinishedList);
             this.Controls.Add(this.listBoxFinishedList);
             this.Controls.Add(this.groupBoxQueue);
-            this.Controls.Add(this.buttonEnqueue);
+            this.Controls.Add(this.buttonAddNewItem);
             this.Controls.Add(this.numericUpDownServiceTag);
             this.Controls.Add(this.labelServiceText);
             this.Controls.Add(this.textBoxServiceCost);
             this.Controls.Add(this.labelServiceCost);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxServiceProblem);
             this.Controls.Add(this.textBoxDroneModel);
             this.Controls.Add(this.textBoxClientName);
             this.Controls.Add(this.labelServiceProblem);
@@ -313,12 +314,12 @@
         private System.Windows.Forms.Label labelServiceProblem;
         private System.Windows.Forms.TextBox textBoxClientName;
         private System.Windows.Forms.TextBox textBoxDroneModel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxServiceProblem;
         private System.Windows.Forms.Label labelServiceCost;
         private System.Windows.Forms.TextBox textBoxServiceCost;
         private System.Windows.Forms.Label labelServiceText;
         private System.Windows.Forms.NumericUpDown numericUpDownServiceTag;
-        private System.Windows.Forms.Button buttonEnqueue;
+        private System.Windows.Forms.Button buttonAddNewItem;
         private System.Windows.Forms.GroupBox groupBoxQueue;
         private System.Windows.Forms.RadioButton radioButtonExpress;
         private System.Windows.Forms.RadioButton radioButtonRegular;
