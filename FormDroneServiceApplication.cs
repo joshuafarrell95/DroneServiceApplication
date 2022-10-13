@@ -49,7 +49,6 @@ namespace DroneServiceApplication
                 addDrone.SetClientName(textBoxClientName.Text);
                 addDrone.SetDroneModel(textBoxDroneModel.Text);
                 addDrone.SetServiceProblem(textBoxServiceProblem.Text);
-                addDrone.SetServiceCost(addServiceCost);
                 addDrone.SetServiceTag(addServiceTag);
 
                 /* Increment the service tag by 10 from 100 to 900 */
@@ -62,25 +61,28 @@ namespace DroneServiceApplication
                 {
                     numericUpDownServiceTag.Value = 100;
                 }
-                
 
+                /* Add to the proper queue dependent on the selected radio button */
                 if (GetServicePriority() == "Regular")
                 {
+                    addDrone.SetServiceCost(addServiceCost);
                     RegularService.Enqueue(addDrone);
                     DisplayRegularQueue();
                 }
                 else if (GetServicePriority() == "Express")
                 {
+                    addDrone.SetServiceCost(IncreaseServiceCost(addServiceCost, 15));
                     ExpressService.Enqueue(addDrone);
                     DisplayExpressQueue();
                 }
-                // Add clear GUI code here
+                ClearAllTextboxes();
             }
         }
 
         private bool CheckAllGUIElements()
         {
-            //return true;
+            /* If all textboxes are not empty, the numericUpDown is not empty and */
+            /* one of the two radio buttons are selected, return true */
             if (!string.IsNullOrEmpty(textBoxClientName.Text) &&
                 !string.IsNullOrEmpty(textBoxDroneModel.Text) &&
                 !string.IsNullOrEmpty(textBoxServiceProblem.Text) &&
@@ -194,6 +196,13 @@ namespace DroneServiceApplication
         // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.
 
         // 6.17	Create a custom method that will clear all the textboxes after each service item has been added.
+        private void ClearAllTextboxes()
+        {
+            textBoxClientName.Clear();
+            textBoxDroneModel.Clear();
+            textBoxServiceProblem.Clear();
+            textBoxServiceCost.Clear();
+        }
 
         // 6.18	All code is required to be adequately commented.Map the programming criteria and features to your code/methods by adding comments above the method signatures.
         // Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
