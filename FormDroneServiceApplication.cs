@@ -44,7 +44,7 @@ namespace DroneServiceApplication
             {
                 Drone addDrone = new Drone();
                 Double.TryParse(textBoxServiceCost.Text, out double addServiceCost);
-                Int32.TryParse(textBoxServiceCost.Text, out int addServiceTag);
+                Int32.TryParse(numericUpDownServiceTag.Text, out int addServiceTag);
 
                 addDrone.SetClientName(textBoxClientName.Text);
                 addDrone.SetDroneModel(textBoxDroneModel.Text);
@@ -52,13 +52,17 @@ namespace DroneServiceApplication
                 addDrone.SetServiceCost(addServiceCost);
                 addDrone.SetServiceTag(addServiceTag);
 
+                numericUpDownServiceTag.Value = IncrementServiceTag(addServiceTag);
+
                 if (GetServicePriority() == "Regular")
                 {
                     RegularService.Enqueue(addDrone);
+                    DisplayRegularQueue();
                 }
                 else if (GetServicePriority() == "Express")
                 {
                     ExpressService.Enqueue(addDrone);
+                    DisplayExpressQueue();
                 }
                 // Add clear GUI code here
             }
@@ -85,10 +89,8 @@ namespace DroneServiceApplication
         #region 6.6
         private double IncreaseServiceCost(double serviceCost, int percentage)
         {
-            /* Add original service cost plus a percentage of that cost */
-            /* e.g., let serviceCost = 100 and percentage = 15 */
-            /* Therefore it follows that 100 + (100 * (15 / 100)) */
-            /* then 100 + (100 * 0.15) */
+            /* Add original service cost plus a percentage of that cost e.g., let serviceCost = 100 and percentage = 15 */
+            /* Therefore it follows that 100 + (100 * (15 / 100)), then 100 + (100 * 0.15) */
             /* then 100 + 15 which will return 15.00d */
             return Math.Round(serviceCost + (serviceCost * (percentage / 100)), 2);
         }
@@ -161,8 +163,35 @@ namespace DroneServiceApplication
         }
         #endregion
 
-
         // 6.11	Create a custom method to increment the service tag control, this method must be called inside the “AddNewItem” method before the new service item is added to a queue.
+        private int IncrementServiceTag(int oldServiceTag)
+        {
+            /* Reset service tag numbers so that they can loop indefinitely */
+            try
+            {
+                return oldServiceTag + 10;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return 100;
+            }
+        }
 
+        // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
+
+        // 6.13	Create a mouse click method for the express service ListView that will display the Client Name and Service Problem in the related textboxes.
+
+        // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
+        // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+
+        // 6.15	Create a button click method that will remove a service item from the express ListView and dequeue the express service Queue<T> data structure.
+        // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+
+        // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.
+
+        // 6.17	Create a custom method that will clear all the textboxes after each service item has been added.
+
+        // 6.18	All code is required to be adequately commented.Map the programming criteria and features to your code/methods by adding comments above the method signatures.
+        // Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
     }
 }

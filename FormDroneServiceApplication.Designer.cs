@@ -52,6 +52,7 @@
             this.labelRegularQueue = new System.Windows.Forms.Label();
             this.labelExpressQueue = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.columnHeaderDroneModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownServiceTag)).BeginInit();
             this.groupBoxQueue.SuspendLayout();
             this.SuspendLayout();
@@ -133,10 +134,30 @@
             // 
             // numericUpDownServiceTag
             // 
+            this.numericUpDownServiceTag.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDownServiceTag.Location = new System.Drawing.Point(540, 71);
+            this.numericUpDownServiceTag.Maximum = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
+            this.numericUpDownServiceTag.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.numericUpDownServiceTag.Name = "numericUpDownServiceTag";
             this.numericUpDownServiceTag.Size = new System.Drawing.Size(100, 20);
             this.numericUpDownServiceTag.TabIndex = 9;
+            this.numericUpDownServiceTag.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // buttonAddNewItem
             // 
@@ -184,7 +205,8 @@
             // listViewRegularQueue
             // 
             this.listViewRegularQueue.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderClientName});
+            this.columnHeaderClientName,
+            this.columnHeaderDroneModel});
             this.listViewRegularQueue.HideSelection = false;
             this.listViewRegularQueue.Location = new System.Drawing.Point(15, 190);
             this.listViewRegularQueue.Name = "listViewRegularQueue";
@@ -196,7 +218,7 @@
             // columnHeaderClientName
             // 
             this.columnHeaderClientName.Text = "Client Name";
-            this.columnHeaderClientName.Width = 137;
+            this.columnHeaderClientName.Width = 75;
             // 
             // listViewExpressQueue
             // 
@@ -270,6 +292,11 @@
             this.statusStrip.TabIndex = 20;
             this.statusStrip.Text = "statusStrip";
             // 
+            // columnHeaderDroneModel
+            // 
+            this.columnHeaderDroneModel.Text = "Drone Model";
+            this.columnHeaderDroneModel.Width = 82;
+            // 
             // FormDroneServiceApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +361,7 @@
         private System.Windows.Forms.Label labelRegularQueue;
         private System.Windows.Forms.Label labelExpressQueue;
         private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ColumnHeader columnHeaderDroneModel;
     }
 }
 
