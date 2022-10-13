@@ -174,10 +174,12 @@ namespace DroneServiceApplication
         #endregion
 
         // 6.11	Create a custom method to increment the service tag control, this method must be called inside the “AddNewItem” method before the new service item is added to a queue.
+        #region 6.11
         private int IncrementServiceTag(int oldServiceTag)
         {
             return oldServiceTag + 10;
         }
+        #endregion
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
 
