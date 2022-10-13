@@ -52,7 +52,17 @@ namespace DroneServiceApplication
                 addDrone.SetServiceCost(addServiceCost);
                 addDrone.SetServiceTag(addServiceTag);
 
-                numericUpDownServiceTag.Value = IncrementServiceTag(addServiceTag);
+                /* Increment the service tag by 10 from 100 to 900 */
+                try
+                {
+                    numericUpDownServiceTag.Value = IncrementServiceTag(addServiceTag);
+                }
+                /* If the service tag would be incremented above 900, reset the service tag */
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    numericUpDownServiceTag.Value = 100;
+                }
+                
 
                 if (GetServicePriority() == "Regular")
                 {
@@ -166,15 +176,7 @@ namespace DroneServiceApplication
         // 6.11	Create a custom method to increment the service tag control, this method must be called inside the “AddNewItem” method before the new service item is added to a queue.
         private int IncrementServiceTag(int oldServiceTag)
         {
-            /* Reset service tag numbers so that they can loop indefinitely */
-            try
-            {
-                return oldServiceTag + 10;
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                return 100;
-            }
+            return oldServiceTag + 10;
         }
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
