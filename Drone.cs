@@ -21,52 +21,52 @@ namespace DroneServiceApplication
         private int serviceTag;
 
         #region Getters and setters
-        public string getClientName()
+        public string GetClientName()
         {
             return clientName;
         }
 
-        public void setClientName(string newClientName)
+        public void SetClientName(string newClientName)
         {
             clientName = newClientName;
         }
 
-        public string getDroneModel()
+        public string GetDroneModel()
         {
             return droneModel;
         }
 
-        public void setDroneModel(string newDroneModel)
+        public void SetDroneModel(string newDroneModel)
         {
             droneModel = newDroneModel;
         }
 
-        public string getServiceProblem()
+        public string GetServiceProblem()
         {
             return serviceProblem;
         }
 
-        public void setServiceProblem(string newServiceProblem)
+        public void SetServiceProblem(string newServiceProblem)
         {
             serviceProblem = newServiceProblem;
         }
 
-        public double getServiceCost()
+        public double GetServiceCost()
         {
             return Math.Round(serviceCost, 2);
         }
 
-        public void setServiceCost(double newServiceCost)
+        public void SetServiceCost(double newServiceCost)
         {
             serviceCost = newServiceCost;
         }
 
-        public int getServiceTag()
+        public int GetServiceTag()
         {
             return serviceTag;
         }
 
-        public void setServiceTag(int newServiceTag)
+        public void SetServiceTag(int newServiceTag)
         {
             serviceTag = newServiceTag;
         }
