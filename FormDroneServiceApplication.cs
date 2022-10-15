@@ -103,10 +103,8 @@ namespace DroneServiceApplication
         #region 6.6
         private double IncreaseServiceCost(double serviceCost, int percentage)
         {
-            /* Add original service cost plus a percentage of that cost e.g., let serviceCost = 100 and percentage = 15 */
-            /* Therefore it follows that 100 + (100 * (15 / 100)), then 100 + (100 * 0.15) */
-            /* then 100 + 15 which will return 15.00d */
-            return Math.Round(serviceCost + (serviceCost * (percentage / 100)), 1);
+            double increasedCost = serviceCost * (percentage / 100.0);
+            return Math.Round(serviceCost + increasedCost, 1);
         }
         #endregion
 
@@ -144,7 +142,7 @@ namespace DroneServiceApplication
                 ListViewItem lvi = new ListViewItem(drone.GetClientName());
                 lvi.SubItems.Add(drone.GetDroneModel());
                 lvi.SubItems.Add(drone.GetServiceProblem());
-                lvi.SubItems.Add(drone.GetServiceCost().ToString());
+                lvi.SubItems.Add("$ " + drone.GetServiceCost().ToString());
                 lvi.SubItems.Add(drone.GetServiceTag().ToString());
                 listViewRegularQueue.Items.Add(lvi);
             }
@@ -162,7 +160,7 @@ namespace DroneServiceApplication
                 ListViewItem lvi = new ListViewItem(drone.GetClientName());
                 lvi.SubItems.Add(drone.GetDroneModel());
                 lvi.SubItems.Add(drone.GetServiceProblem());
-                lvi.SubItems.Add(drone.GetServiceCost().ToString());
+                lvi.SubItems.Add("$ " + drone.GetServiceCost().ToString());
                 lvi.SubItems.Add(drone.GetServiceTag().ToString());
                 listViewExpressQueue.Items.Add(lvi);
             }
