@@ -172,9 +172,12 @@ namespace DroneServiceApplication
         #region 6.10
         private void TextBoxServiceCost_KeyPress(object sender, KeyPressEventArgs e)
         {
+            statusStrip.Items.Clear();
+            
             /* Filter out non-integer characters except for the period key U+002E */
             if ((!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) && e.KeyChar != 0x002E)
             {
+                statusStrip.Items.Add("You must only enter numeric characters (0-9) and one number after the decimal point.");
                 e.Handled = true;
             }
 
@@ -187,6 +190,7 @@ namespace DroneServiceApplication
                 /* Allow the BACKSPACE key to be used */
                 if (e.KeyChar != 0x0008)
                 {
+                    statusStrip.Items.Add("You can only enter one number after the decimal point.");
                     e.Handled = true;
                 }
             }
