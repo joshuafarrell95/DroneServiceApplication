@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -97,6 +98,7 @@ namespace DroneServiceApplication
             }
             return false;
         }
+
         #endregion
 
         // 6.6	Before a new service item is added to the Express Queue the service cost must be increased by 15%.
@@ -202,30 +204,87 @@ namespace DroneServiceApplication
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
         private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            int selIndx = GetSelectedRegularIndex();
+            if (selIndx != -1)
+            {
+                textBoxClientName.Text = RegularService.ElementAt(selIndx).GetClientName();
+                textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
+                textBoxServiceProblem.Text = RegularService.ElementAt(selIndx).GetServiceProblem();
+                textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
+                numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
 
+                foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                {
+                    if (rb.Text == "Regular")
+                    {
+                        rb.Checked = true;
+                    }
+                    else
+                    {
+                        rb.Checked = false;
+                    }
+                }
+            }
         }
 
         private int GetSelectedRegularIndex()
         {
-            return 0;
+            try
+            {
+                return listViewRegularQueue.SelectedIndices[0];
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Trace.TraceError(ex.Message);
+                return -1;
+            }
         }
 
         // 6.13	Create a mouse click method for the express service ListView that will display the Client Name and Service Problem in the related textboxes.
         private void ListViewExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            int selIndx = GetSelectedExpressIndex();
+            if (selIndx != -1)
+            {
+                textBoxClientName.Text = ExpressService.ElementAt(selIndx).GetClientName();
+                textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
+                textBoxServiceProblem.Text = ExpressService.ElementAt(selIndx).GetServiceProblem();
+                textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
+                numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
 
+                foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                {
+                    if (rb.Text == "Express")
+                    {
+                        rb.Checked = true;
+                    }
+                    else
+                    {
+                        rb.Checked = false;
+                    }
+                }
+            }
         }
 
         private int GetSelectedExpressIndex()
         {
-            return 0;
+            try
+            {
+                return listViewExpressQueue.SelectedIndices[0];
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Trace.TraceError(ex.Message);
+                return -1;
+            }
         }
 
         // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
         private void ButtonRemoveFromRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
-
+            RegularService.First().GetClientName();
+            RegularService.Dequeue();
         }
 
         // 6.15	Create a button click method that will remove a service item from the express ListView and dequeue the express service Queue<T> data structure.
