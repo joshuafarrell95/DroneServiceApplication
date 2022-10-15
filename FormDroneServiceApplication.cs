@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -104,7 +105,7 @@ namespace DroneServiceApplication
             /* Add original service cost plus a percentage of that cost e.g., let serviceCost = 100 and percentage = 15 */
             /* Therefore it follows that 100 + (100 * (15 / 100)), then 100 + (100 * 0.15) */
             /* then 100 + 15 which will return 15.00d */
-            return Math.Round(serviceCost + (serviceCost * (percentage / 100)), 2);
+            return Math.Round(serviceCost + (serviceCost * (percentage / 100)), 1);
         }
         #endregion
 
@@ -171,7 +172,24 @@ namespace DroneServiceApplication
         #region 6.10
         private void TextBoxServiceCost_KeyPress(object sender, KeyPressEventArgs e)
         {
+            /* Filter out non-integer characters except for the period key U+002E */
+            if ((!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) && e.KeyChar != 0x002E)
+            {
+                e.Handled = true;
+            }
 
+            /* Allow an indefinite amount of digits before the period, then allow only one digit after the period */
+            string regexPattern = @"^\d*(\.([\d]{0}))*$";
+            bool regexMatch = Regex.Match(textBoxServiceCost.Text, regexPattern).Success;
+
+            if (!regexMatch)
+            {
+                /* Allow the BACKSPACE key to be used */
+                if (e.KeyChar != 0x0008)
+                {
+                    e.Handled = true;
+                }
+            }
         }
         #endregion
 
@@ -184,16 +202,36 @@ namespace DroneServiceApplication
         #endregion
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
+        private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         // 6.13	Create a mouse click method for the express service ListView that will display the Client Name and Service Problem in the related textboxes.
+        private void ListViewExpressQueue_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+        private void ButtonRemoveFromRegularQueue_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         // 6.15	Create a button click method that will remove a service item from the express ListView and dequeue the express service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+        private void ButtonRemoveFromExpressQueue_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.
+        private void ListBoxFinishedList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         // 6.17	Create a custom method that will clear all the textboxes after each service item has been added.
         private void ClearAllTextboxes()
@@ -204,7 +242,7 @@ namespace DroneServiceApplication
             textBoxServiceCost.Clear();
         }
 
-        // 6.18	All code is required to be adequately commented.Map the programming criteria and features to your code/methods by adding comments above the method signatures.
+        // 6.18	All code is required to be adequately commented. Map the programming criteria and features to your code/methods by adding comments above the method signatures.
         // Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
     }
 }

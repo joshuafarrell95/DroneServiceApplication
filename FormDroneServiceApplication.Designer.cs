@@ -214,6 +214,7 @@
             this.listViewRegularQueue.TabIndex = 13;
             this.listViewRegularQueue.UseCompatibleStateImageBehavior = false;
             this.listViewRegularQueue.View = System.Windows.Forms.View.Details;
+            this.listViewRegularQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListViewRegularQueue_MouseClick);
             // 
             // columnHeaderClientName
             // 
@@ -229,6 +230,7 @@
             this.listViewExpressQueue.TabIndex = 16;
             this.listViewExpressQueue.UseCompatibleStateImageBehavior = false;
             this.listViewExpressQueue.View = System.Windows.Forms.View.Details;
+            this.listViewExpressQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListViewExpressQueue_MouseClick);
             // 
             // listBoxFinishedList
             // 
@@ -237,6 +239,7 @@
             this.listBoxFinishedList.Name = "listBoxFinishedList";
             this.listBoxFinishedList.Size = new System.Drawing.Size(891, 199);
             this.listBoxFinishedList.TabIndex = 19;
+            this.listBoxFinishedList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBoxFinishedList_MouseDoubleClick);
             // 
             // labelFinishedList
             // 
@@ -255,6 +258,7 @@
             this.buttonRemoveFromExpressQueue.TabIndex = 17;
             this.buttonRemoveFromExpressQueue.Text = "REMOVE FROM EXPRESS QUEUE";
             this.buttonRemoveFromExpressQueue.UseVisualStyleBackColor = true;
+            this.buttonRemoveFromExpressQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonRemoveFromExpressQueue_MouseClick);
             // 
             // buttonRemoveFromRegularQueue
             // 
@@ -264,6 +268,7 @@
             this.buttonRemoveFromRegularQueue.TabIndex = 14;
             this.buttonRemoveFromRegularQueue.Text = "REMOVE FROM REGULAR QUEUE";
             this.buttonRemoveFromRegularQueue.UseVisualStyleBackColor = true;
+            this.buttonRemoveFromRegularQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonRemoveFromRegularQueue_MouseClick);
             // 
             // labelRegularQueue
             // 
