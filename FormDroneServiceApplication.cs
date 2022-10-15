@@ -47,6 +47,7 @@ namespace DroneServiceApplication
                 Double.TryParse(textBoxServiceCost.Text, out double addServiceCost);
                 Int32.TryParse(numericUpDownServiceTag.Text, out int addServiceTag);
 
+                /* NOTE service cost is set when the service priority is set after the try-catch */
                 addDrone.SetClientName(textBoxClientName.Text);
                 addDrone.SetDroneModel(textBoxDroneModel.Text);
                 addDrone.SetServiceProblem(textBoxServiceProblem.Text);
@@ -207,10 +208,20 @@ namespace DroneServiceApplication
 
         }
 
+        private int GetSelectedRegularIndex()
+        {
+            return 0;
+        }
+
         // 6.13	Create a mouse click method for the express service ListView that will display the Client Name and Service Problem in the related textboxes.
         private void ListViewExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private int GetSelectedExpressIndex()
+        {
+            return 0;
         }
 
         // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
