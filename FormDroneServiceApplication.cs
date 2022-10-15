@@ -130,7 +130,6 @@ namespace DroneServiceApplication
         }
         #endregion
 
-
         // 6.8	Create a custom method that will display all the elements in the RegularService queue
         // The display must use a List View and with appropriate column headers.
         #region 6.8
