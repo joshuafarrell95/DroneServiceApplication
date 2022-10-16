@@ -291,15 +291,43 @@ namespace DroneServiceApplication
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
         private void ButtonRemoveFromRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
-            RegularService.First().GetClientName();
-            RegularService.Dequeue();
+            try
+            {
+                Drone drone = RegularService.Dequeue();
+                DisplayRegularQueue();
+                FinishedList.Add(drone);
+                DisplayFinishedList();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
+        }
+
+        private void DisplayFinishedList()
+        {
+            listBoxFinishedList.Items.Clear();
+            foreach (var drone in FinishedList)
+            {
+                listBoxFinishedList.Items.Add(drone.ToString());
+            }
         }
 
         // 6.15	Create a button click method that will remove a service item from the express ListView and dequeue the express service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
         private void ButtonRemoveFromExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+                Drone drone = ExpressService.Dequeue();
+                DisplayExpressQueue();
+                FinishedList.Add(drone);
+                DisplayFinishedList();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
         }
 
         // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.

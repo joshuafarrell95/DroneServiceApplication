@@ -78,6 +78,11 @@ namespace DroneServiceApplication
         {
             return droneModel.CompareTo(d.droneModel);
         }
+
+        public override string ToString()
+        {
+            return GetClientName() + "\t" + GetDroneModel() + "\t" + GetServiceProblem() + "\t$ " + GetServiceCost() + "\t" + GetServiceTag();
+    }
         #endregion
     }
 }
