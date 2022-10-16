@@ -333,7 +333,25 @@ namespace DroneServiceApplication
         // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.
         private void ListBoxFinishedList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            int selIndx = GetSelectedFinishedIndex();
 
+            FinishedList.RemoveAt(selIndx);
+
+            //listBoxFinishedList.Items.RemoveAt(selIndx);
+            DisplayFinishedList();
+        }
+
+        private int GetSelectedFinishedIndex()
+        {
+            try
+            {
+                return listBoxFinishedList.SelectedIndex;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return -1;
+            }
         }
 
         // 6.17	Create a custom method that will clear all the textboxes after each service item has been added.
