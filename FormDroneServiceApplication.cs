@@ -336,8 +336,6 @@ namespace DroneServiceApplication
             int selIndx = GetSelectedFinishedIndex();
 
             FinishedList.RemoveAt(selIndx);
-
-            //listBoxFinishedList.Items.RemoveAt(selIndx);
             DisplayFinishedList();
         }
 
