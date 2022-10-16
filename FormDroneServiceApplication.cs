@@ -206,28 +206,29 @@ namespace DroneServiceApplication
         #endregion
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
+        #region 6.12
         private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
             int selIndx = GetSelectedRegularIndex();
             if (selIndx != -1)
             {
                 textBoxClientName.Text = RegularService.ElementAt(selIndx).GetClientName();
-                textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
+                //textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
                 textBoxServiceProblem.Text = RegularService.ElementAt(selIndx).GetServiceProblem();
-                textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
-                numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
+                //textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
+                //numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
 
-                foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                {
-                    if (rb.Text == "Regular")
-                    {
-                        rb.Checked = true;
-                    }
-                    else
-                    {
-                        rb.Checked = false;
-                    }
-                }
+                //foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                //{
+                //    if (rb.Text == "Regular")
+                //    {
+                //        rb.Checked = true;
+                //    }
+                //    else
+                //    {
+                //        rb.Checked = false;
+                //    }
+                //}
             }
         }
 
@@ -243,30 +244,32 @@ namespace DroneServiceApplication
                 return -1;
             }
         }
+        #endregion
 
         // 6.13	Create a mouse click method for the express service ListView that will display the Client Name and Service Problem in the related textboxes.
+        #region 6.13
         private void ListViewExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
             int selIndx = GetSelectedExpressIndex();
             if (selIndx != -1)
             {
                 textBoxClientName.Text = ExpressService.ElementAt(selIndx).GetClientName();
-                textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
+                //textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
                 textBoxServiceProblem.Text = ExpressService.ElementAt(selIndx).GetServiceProblem();
-                textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
-                numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
+                //textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
+                //numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
 
-                foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                {
-                    if (rb.Text == "Express")
-                    {
-                        rb.Checked = true;
-                    }
-                    else
-                    {
-                        rb.Checked = false;
-                    }
-                }
+                //foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                //{
+                //    if (rb.Text == "Express")
+                //    {
+                //        rb.Checked = true;
+                //    }
+                //    else
+                //    {
+                //        rb.Checked = false;
+                //    }
+                //}
             }
         }
 
@@ -282,6 +285,7 @@ namespace DroneServiceApplication
                 return -1;
             }
         }
+        #endregion
 
         // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
