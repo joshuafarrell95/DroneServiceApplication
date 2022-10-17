@@ -211,6 +211,7 @@ namespace DroneServiceApplication
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
         #region 6.12
+        private bool isDeveloperMode = false; /* Developer mode returns all other text boxes, the numericUpDown and each radio button */
         private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
             statusStrip.Items.Clear();
@@ -218,23 +219,26 @@ namespace DroneServiceApplication
             if (selIndx != -1)
             {
                 textBoxClientName.Text = RegularService.ElementAt(selIndx).GetClientName();
-                //textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
                 textBoxServiceProblem.Text = RegularService.ElementAt(selIndx).GetServiceProblem();
-                //textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
-                //numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
 
-                //foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                //{
-                //    if (rb.Text == "Regular")
-                //    {
-                //        rb.Checked = true;
-                //    }
-                //    else
-                //    {
-                //        rb.Checked = false;
-                //    }
-                //}
-                //textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel + " populated ");
+                if (isDeveloperMode)
+                {
+                    textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
+                    textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
+                    numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
+
+                    foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                    {
+                        if (rb.Text == "Regular")
+                        {
+                            rb.Checked = true;
+                        }
+                        else
+                        {
+                            rb.Checked = false;
+                        }
+                    }
+                }
 
                 statusStrip.Items.Add("Regular service data for " + RegularService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
@@ -262,22 +266,26 @@ namespace DroneServiceApplication
             if (selIndx != -1)
             {
                 textBoxClientName.Text = ExpressService.ElementAt(selIndx).GetClientName();
-                //textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
                 textBoxServiceProblem.Text = ExpressService.ElementAt(selIndx).GetServiceProblem();
-                //textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
-                //numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
 
-                //foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                //{
-                //    if (rb.Text == "Express")
-                //    {
-                //        rb.Checked = true;
-                //    }
-                //    else
-                //    {
-                //        rb.Checked = false;
-                //    }
-                //}
+                if (isDeveloperMode)
+                {
+                    textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
+                    textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
+                    numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
+
+                    foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
+                    {
+                        if (rb.Text == "Express")
+                        {
+                            rb.Checked = true;
+                        }
+                        else
+                        {
+                            rb.Checked = false;
+                        }
+                    }
+                }
 
                 statusStrip.Items.Add("Express service data for " + ExpressService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
@@ -302,9 +310,11 @@ namespace DroneServiceApplication
         #region 6.14
         private void ButtonRemoveFromRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            statusStrip.Items.Clear();
             try
             {
                 Drone drone = RegularService.Dequeue();
+                statusStrip.Items.Add("Drone regular service finished for " + drone.GetClientName() + " and is now located in the finished list below.");
                 DisplayRegularQueue();
                 FinishedList.Add(drone);
                 DisplayFinishedList();
@@ -333,6 +343,7 @@ namespace DroneServiceApplication
             try
             {
                 Drone drone = ExpressService.Dequeue();
+                statusStrip.Items.Add("Drone express service finished for " + drone.GetClientName() + " and is now located in the finished list below.");
                 DisplayExpressQueue();
                 FinishedList.Add(drone);
                 DisplayFinishedList();
@@ -348,7 +359,12 @@ namespace DroneServiceApplication
         #region 6.16
         private void ListBoxFinishedList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            statusStrip.Items.Clear();
+            
             int selIndx = GetSelectedFinishedIndex();
+
+            string oldClientName = FinishedList.ElementAt<Drone>(selIndx).GetClientName();
+            statusStrip.Items.Add("Drone service completed for " + oldClientName);
 
             FinishedList.RemoveAt(selIndx);
             DisplayFinishedList();
