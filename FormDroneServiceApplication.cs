@@ -324,7 +324,7 @@ namespace DroneServiceApplication
         private void DisplayFinishedList()
         {
             listBoxFinishedList.Items.Clear();
-            foreach (var drone in FinishedList)
+            foreach (Drone drone in FinishedList)
             {
                 listBoxFinishedList.Items.Add(drone.ToString());
             }
