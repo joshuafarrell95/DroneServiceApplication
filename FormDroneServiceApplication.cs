@@ -68,12 +68,14 @@ namespace DroneServiceApplication
                 /* Add to the proper queue dependent on the selected radio button */
                 if (GetServicePriority() == "Regular")
                 {
+                    statusStrip.Items.Add("Regular drone service added for " + addDrone.GetClientName());
                     addDrone.SetServiceCost(addServiceCost);
                     RegularService.Enqueue(addDrone);
                     DisplayRegularQueue();
                 }
                 else if (GetServicePriority() == "Express")
                 {
+                    statusStrip.Items.Add("Express drone service added for " + addDrone.GetClientName());
                     addDrone.SetServiceCost(IncreaseServiceCost(addServiceCost, 15));
                     ExpressService.Enqueue(addDrone);
                     DisplayExpressQueue();
@@ -211,6 +213,7 @@ namespace DroneServiceApplication
         #region 6.12
         private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            statusStrip.Items.Clear();
             int selIndx = GetSelectedRegularIndex();
             if (selIndx != -1)
             {
@@ -231,6 +234,9 @@ namespace DroneServiceApplication
                 //        rb.Checked = false;
                 //    }
                 //}
+                //textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel + " populated ");
+
+                statusStrip.Items.Add("Regular service data for " + RegularService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
         }
 
@@ -272,6 +278,8 @@ namespace DroneServiceApplication
                 //        rb.Checked = false;
                 //    }
                 //}
+
+                statusStrip.Items.Add("Express service data for " + ExpressService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
         }
 
