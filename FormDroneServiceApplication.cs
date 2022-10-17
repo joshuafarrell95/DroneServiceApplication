@@ -84,6 +84,7 @@ namespace DroneServiceApplication
 
         private bool CheckAllGUIElements()
         {
+            statusStrip.Items.Clear();
             /* If all textboxes are not empty, the numericUpDown is not empty and */
             /* one of the two radio buttons are selected, return true */
             if (!string.IsNullOrEmpty(textBoxClientName.Text) &&
@@ -96,6 +97,7 @@ namespace DroneServiceApplication
             {
                 return true;
             }
+            statusStrip.Items.Add("Please fully fill in all text fields, then select either Regular or Express.");
             return false;
         }
 
