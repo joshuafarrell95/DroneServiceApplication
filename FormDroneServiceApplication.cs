@@ -262,6 +262,7 @@ namespace DroneServiceApplication
         #region 6.13
         private void ListViewExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            statusStrip.Items.Clear();
             int selIndx = GetSelectedExpressIndex();
             if (selIndx != -1)
             {
@@ -340,6 +341,7 @@ namespace DroneServiceApplication
         #region 6.15
         private void ButtonRemoveFromExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
+            statusStrip.Items.Clear();
             try
             {
                 Drone drone = ExpressService.Dequeue();
