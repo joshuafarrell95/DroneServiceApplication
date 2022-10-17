@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,16 +20,19 @@ namespace DroneServiceApplication
         private string serviceProblem;
         private double serviceCost;
         private int serviceTag;
-
+        
+        // This class uses separate getter and setter methods which are public
         #region Getters and setters
         public string GetClientName()
         {
             return clientName;
         }
 
+        // Format clientName to Title case (e.g. joshua farrell > Joshua Farrell)
         public void SetClientName(string newClientName)
         {
-            clientName = newClientName;
+            TextInfo ti = new CultureInfo("en-AU", false).TextInfo;
+            clientName = ti.ToTitleCase(newClientName);
         }
 
         public string GetDroneModel()
@@ -46,9 +50,12 @@ namespace DroneServiceApplication
             return serviceProblem;
         }
 
+        // Format serviceProblem to Sentence case (e.g. propellers are not spinning. > Propellers are not spinning.)
         public void SetServiceProblem(string newServiceProblem)
         {
-            serviceProblem = newServiceProblem;
+            string lowerServiceProblem = newServiceProblem.ToLower();
+            Regex regex = new Regex(@"(^[a-z])|\.\s+(.)", RegexOptions.ExplicitCapture);
+            serviceProblem = regex.Replace(lowerServiceProblem, s => s.Value.ToUpper());
         }
 
         public double GetServiceCost()
@@ -72,8 +79,8 @@ namespace DroneServiceApplication
         }
         #endregion
 
+        // These methods are used to compare between different Drone class objects and to display drone data as a string
         #region Utilities
-
         public int CompareTo(Drone d)
         {
             return droneModel.CompareTo(d.droneModel);
@@ -81,8 +88,9 @@ namespace DroneServiceApplication
 
         public override string ToString()
         {
-            return GetClientName() + "\t" + GetDroneModel() + "\t" + GetServiceProblem() + "\t$ " + GetServiceCost() + "\t" + GetServiceTag();
-    }
+            //return GetClientName() + "\t\t" + GetDroneModel() + "\t\t" + GetServiceProblem() + "\t\t$ " + GetServiceCost() + "\t\t" + GetServiceTag();
+            return GetClientName() + "\t\t$ " + GetServiceCost();
+        }
         #endregion
     }
 }
