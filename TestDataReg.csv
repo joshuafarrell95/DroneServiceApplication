@@ -1,0 +1,4 @@
+clientName,droneModel,serviceProblem,serviceCost,serviceTag
+"joshua farrell","Parrot Anafi","propellers are not spinning.",100,100
+"joe bloggs","Autel Evo Lite+","camera is not recording.",150,120
+"john citizen","DJI Air 2S","altimeter is reporting incorrect height.",200,140
