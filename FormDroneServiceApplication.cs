@@ -289,6 +289,7 @@ namespace DroneServiceApplication
 
         // 6.14	Create a button click method that will remove a service item from the regular ListView and dequeue the regular service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+        #region 6.14
         private void ButtonRemoveFromRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -312,9 +313,11 @@ namespace DroneServiceApplication
                 listBoxFinishedList.Items.Add(drone.ToString());
             }
         }
+        #endregion
 
         // 6.15	Create a button click method that will remove a service item from the express ListView and dequeue the express service Queue<T> data structure.
         // The dequeued item must be added to the List<T> and displayed in the ListBox for finished service items.
+        #region 6.15
         private void ButtonRemoveFromExpressQueue_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -329,8 +332,10 @@ namespace DroneServiceApplication
                 Trace.TraceError(ex.ToString());
             }
         }
+        #endregion
 
         // 6.16	Create a double mouse click method that will delete a service item from the finished listbox and remove the same item from the List<T>.
+        #region 6.16
         private void ListBoxFinishedList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int selIndx = GetSelectedFinishedIndex();
@@ -351,8 +356,10 @@ namespace DroneServiceApplication
                 return -1;
             }
         }
+        #endregion
 
         // 6.17	Create a custom method that will clear all the textboxes after each service item has been added.
+        #region 6.17
         private void ClearAllTextboxes()
         {
             textBoxClientName.Clear();
@@ -360,6 +367,7 @@ namespace DroneServiceApplication
             textBoxServiceProblem.Clear();
             textBoxServiceCost.Clear();
         }
+        #endregion
 
         // 6.18	All code is required to be adequately commented. Map the programming criteria and features to your code/methods by adding comments above the method signatures.
         // Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
