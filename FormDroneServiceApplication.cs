@@ -116,7 +116,7 @@ namespace DroneServiceApplication
         private double IncreaseServiceCost(double serviceCost, int percentage)
         {
             double increasedCost = serviceCost * (percentage / 100.0);
-            return Math.Round(serviceCost + increasedCost, 1);
+            return Math.Round(serviceCost + increasedCost, 1);  // returns increased service cost to 1 decimal point
         }
         #endregion
 
