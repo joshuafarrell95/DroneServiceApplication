@@ -217,7 +217,6 @@ namespace DroneServiceApplication
 
         // 6.12	Create a mouse click method for the regular service ListView that will display the Client Name and Service Problem in the related textboxes.
         #region 6.12
-        private bool isDeveloperMode = false; /* Developer mode returns all other text boxes, the numericUpDown and each radio button */
         private void ListViewRegularQueue_MouseClick(object sender, MouseEventArgs e)
         {
             statusStrip.Items.Clear();
@@ -226,25 +225,6 @@ namespace DroneServiceApplication
             {
                 textBoxClientName.Text = RegularService.ElementAt(selIndx).GetClientName();
                 textBoxServiceProblem.Text = RegularService.ElementAt(selIndx).GetServiceProblem();
-
-                if (isDeveloperMode)
-                {
-                    textBoxDroneModel.Text = RegularService.ElementAt(selIndx).GetDroneModel();
-                    textBoxServiceCost.Text = RegularService.ElementAt(selIndx).GetServiceCost().ToString();
-                    numericUpDownServiceTag.Value = RegularService.ElementAt(selIndx).GetServiceTag();
-
-                    foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                    {
-                        if (rb.Text == "Regular")
-                        {
-                            rb.Checked = true;
-                        }
-                        else
-                        {
-                            rb.Checked = false;
-                        }
-                    }
-                }
 
                 statusStrip.Items.Add("Regular service data for " + RegularService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
@@ -274,25 +254,6 @@ namespace DroneServiceApplication
             {
                 textBoxClientName.Text = ExpressService.ElementAt(selIndx).GetClientName();
                 textBoxServiceProblem.Text = ExpressService.ElementAt(selIndx).GetServiceProblem();
-
-                if (isDeveloperMode)
-                {
-                    textBoxDroneModel.Text = ExpressService.ElementAt(selIndx).GetDroneModel();
-                    textBoxServiceCost.Text = ExpressService.ElementAt(selIndx).GetServiceCost().ToString();
-                    numericUpDownServiceTag.Value = ExpressService.ElementAt(selIndx).GetServiceTag();
-
-                    foreach (RadioButton rb in groupBoxQueue.Controls.OfType<RadioButton>())
-                    {
-                        if (rb.Text == "Express")
-                        {
-                            rb.Checked = true;
-                        }
-                        else
-                        {
-                            rb.Checked = false;
-                        }
-                    }
-                }
 
                 statusStrip.Items.Add("Express service data for " + ExpressService.ElementAt(selIndx).GetClientName() + " populated in the text boxes");
             }
@@ -371,11 +332,14 @@ namespace DroneServiceApplication
             
             int selIndx = GetSelectedFinishedIndex();
 
-            string oldClientName = FinishedList.ElementAt<Drone>(selIndx).GetClientName();
-            statusStrip.Items.Add("Drone service completed for " + oldClientName);
+            if (selIndx != -1)
+            {
+                string oldClientName = FinishedList.ElementAt<Drone>(selIndx).GetClientName();
+                statusStrip.Items.Add("Drone service completed for " + oldClientName);
 
-            FinishedList.RemoveAt(selIndx);
-            DisplayFinishedList();
+                FinishedList.RemoveAt(selIndx);
+                DisplayFinishedList();
+            }
         }
 
         private int GetSelectedFinishedIndex()
