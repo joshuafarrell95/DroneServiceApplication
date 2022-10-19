@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelClientName = new System.Windows.Forms.Label();
             this.labelDroneModel = new System.Windows.Forms.Label();
             this.labelServiceProblem = new System.Windows.Forms.Label();
@@ -45,7 +46,15 @@
             this.listViewRegularQueue = new System.Windows.Forms.ListView();
             this.columnHeaderRegClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderRegDroneModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderRegServiceProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderRegServiceCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderRegServiceTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewExpressQueue = new System.Windows.Forms.ListView();
+            this.columnHeaderExpClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExpDroneModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExpServiceProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExpServiceCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExpServiceTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listBoxFinishedList = new System.Windows.Forms.ListBox();
             this.labelFinishedList = new System.Windows.Forms.Label();
             this.buttonRemoveFromExpressQueue = new System.Windows.Forms.Button();
@@ -53,14 +62,7 @@
             this.labelRegularQueue = new System.Windows.Forms.Label();
             this.labelExpressQueue = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.columnHeaderRegServiceProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderRegServiceCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderRegServiceTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderExpClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderExpDroneModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderExpServiceProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderExpServiceCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderExpServiceTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownServiceTag)).BeginInit();
             this.groupBoxQueue.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +100,7 @@
             this.textBoxClientName.Name = "textBoxClientName";
             this.textBoxClientName.Size = new System.Drawing.Size(349, 20);
             this.textBoxClientName.TabIndex = 1;
+            this.toolTip.SetToolTip(this.textBoxClientName, "Enter the client\'s name here.");
             // 
             // textBoxDroneModel
             // 
@@ -105,6 +108,7 @@
             this.textBoxDroneModel.Name = "textBoxDroneModel";
             this.textBoxDroneModel.Size = new System.Drawing.Size(287, 20);
             this.textBoxDroneModel.TabIndex = 3;
+            this.toolTip.SetToolTip(this.textBoxDroneModel, "Enter the client\'s drone model here.");
             // 
             // textBoxServiceProblem
             // 
@@ -113,6 +117,7 @@
             this.textBoxServiceProblem.Name = "textBoxServiceProblem";
             this.textBoxServiceProblem.Size = new System.Drawing.Size(349, 102);
             this.textBoxServiceProblem.TabIndex = 5;
+            this.toolTip.SetToolTip(this.textBoxServiceProblem, "Enter the drone\'s service problem here.");
             // 
             // labelServiceCost
             // 
@@ -129,6 +134,8 @@
             this.textBoxServiceCost.Name = "textBoxServiceCost";
             this.textBoxServiceCost.Size = new System.Drawing.Size(100, 20);
             this.textBoxServiceCost.TabIndex = 7;
+            this.toolTip.SetToolTip(this.textBoxServiceCost, "Enter the service cost here (requires integer numbers with optional decimal numbe" +
+        "r to 1 decimal place).");
             this.textBoxServiceCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxServiceCost_KeyPress);
             // 
             // labelServiceText
@@ -161,6 +168,7 @@
             this.numericUpDownServiceTag.Name = "numericUpDownServiceTag";
             this.numericUpDownServiceTag.Size = new System.Drawing.Size(100, 20);
             this.numericUpDownServiceTag.TabIndex = 9;
+            this.toolTip.SetToolTip(this.numericUpDownServiceTag, "Service Tag is automatically updated by the program.");
             this.numericUpDownServiceTag.Value = new decimal(new int[] {
             100,
             0,
@@ -176,6 +184,7 @@
             this.buttonAddNewItem.Text = "ADD NEW ITEM";
             this.buttonAddNewItem.UseVisualStyleBackColor = true;
             this.buttonAddNewItem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AddNewItem);
+            this.buttonAddNewItem.MouseEnter += new System.EventHandler(this.ButtonAddNewItem_MouseEnter);
             // 
             // groupBoxQueue
             // 
@@ -196,6 +205,7 @@
             this.radioButtonExpress.Size = new System.Drawing.Size(62, 17);
             this.radioButtonExpress.TabIndex = 1;
             this.radioButtonExpress.Text = "Express";
+            this.toolTip.SetToolTip(this.radioButtonExpress, "The drone will be added to the Express queue with 15% added Service Cost.");
             this.radioButtonExpress.UseVisualStyleBackColor = true;
             // 
             // radioButtonRegular
@@ -208,6 +218,7 @@
             this.radioButtonRegular.TabIndex = 0;
             this.radioButtonRegular.TabStop = true;
             this.radioButtonRegular.Text = "Regular";
+            this.toolTip.SetToolTip(this.radioButtonRegular, "The drone will be added to the Regular queue.");
             this.radioButtonRegular.UseVisualStyleBackColor = true;
             // 
             // listViewRegularQueue
@@ -223,6 +234,8 @@
             this.listViewRegularQueue.Name = "listViewRegularQueue";
             this.listViewRegularQueue.Size = new System.Drawing.Size(440, 207);
             this.listViewRegularQueue.TabIndex = 13;
+            this.toolTip.SetToolTip(this.listViewRegularQueue, "This ListView displays all Regular Service drones. The drone at the top of the li" +
+        "st is the first drone.");
             this.listViewRegularQueue.UseCompatibleStateImageBehavior = false;
             this.listViewRegularQueue.View = System.Windows.Forms.View.Details;
             this.listViewRegularQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListViewRegularQueue_MouseClick);
@@ -237,6 +250,21 @@
             this.columnHeaderRegDroneModel.Text = "Drone Model";
             this.columnHeaderRegDroneModel.Width = 82;
             // 
+            // columnHeaderRegServiceProblem
+            // 
+            this.columnHeaderRegServiceProblem.Text = "Service Problem";
+            this.columnHeaderRegServiceProblem.Width = 121;
+            // 
+            // columnHeaderRegServiceCost
+            // 
+            this.columnHeaderRegServiceCost.Text = "Serrvice Cost";
+            this.columnHeaderRegServiceCost.Width = 80;
+            // 
+            // columnHeaderRegServiceTag
+            // 
+            this.columnHeaderRegServiceTag.Text = "Service Tag";
+            this.columnHeaderRegServiceTag.Width = 78;
+            // 
             // listViewExpressQueue
             // 
             this.listViewExpressQueue.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -250,9 +278,36 @@
             this.listViewExpressQueue.Name = "listViewExpressQueue";
             this.listViewExpressQueue.Size = new System.Drawing.Size(440, 207);
             this.listViewExpressQueue.TabIndex = 16;
+            this.toolTip.SetToolTip(this.listViewExpressQueue, "This ListView displays all Express Service drones. The drone at the top of the li" +
+        "st is the first drone.");
             this.listViewExpressQueue.UseCompatibleStateImageBehavior = false;
             this.listViewExpressQueue.View = System.Windows.Forms.View.Details;
             this.listViewExpressQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListViewExpressQueue_MouseClick);
+            // 
+            // columnHeaderExpClientName
+            // 
+            this.columnHeaderExpClientName.Text = "Client Name";
+            this.columnHeaderExpClientName.Width = 75;
+            // 
+            // columnHeaderExpDroneModel
+            // 
+            this.columnHeaderExpDroneModel.Text = "Drone Model";
+            this.columnHeaderExpDroneModel.Width = 82;
+            // 
+            // columnHeaderExpServiceProblem
+            // 
+            this.columnHeaderExpServiceProblem.Text = "Service Problem";
+            this.columnHeaderExpServiceProblem.Width = 121;
+            // 
+            // columnHeaderExpServiceCost
+            // 
+            this.columnHeaderExpServiceCost.Text = "Service Cost";
+            this.columnHeaderExpServiceCost.Width = 80;
+            // 
+            // columnHeaderExpServiceTag
+            // 
+            this.columnHeaderExpServiceTag.Text = "Service Tag";
+            this.columnHeaderExpServiceTag.Width = 78;
             // 
             // listBoxFinishedList
             // 
@@ -261,6 +316,8 @@
             this.listBoxFinishedList.Name = "listBoxFinishedList";
             this.listBoxFinishedList.Size = new System.Drawing.Size(891, 199);
             this.listBoxFinishedList.TabIndex = 19;
+            this.toolTip.SetToolTip(this.listBoxFinishedList, "This ListBox displays all finished drones for payment.\r\nOnce payment is received," +
+        " remove the name from the list by double clicking the mouse.");
             this.listBoxFinishedList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBoxFinishedList_MouseDoubleClick);
             // 
             // labelFinishedList
@@ -279,6 +336,8 @@
             this.buttonRemoveFromExpressQueue.Size = new System.Drawing.Size(201, 23);
             this.buttonRemoveFromExpressQueue.TabIndex = 17;
             this.buttonRemoveFromExpressQueue.Text = "REMOVE FROM EXPRESS QUEUE";
+            this.toolTip.SetToolTip(this.buttonRemoveFromExpressQueue, "This button will remove the first drone at the top of the list in the Express Que" +
+        "ue.");
             this.buttonRemoveFromExpressQueue.UseVisualStyleBackColor = true;
             this.buttonRemoveFromExpressQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonRemoveFromExpressQueue_MouseClick);
             // 
@@ -289,6 +348,8 @@
             this.buttonRemoveFromRegularQueue.Size = new System.Drawing.Size(201, 23);
             this.buttonRemoveFromRegularQueue.TabIndex = 14;
             this.buttonRemoveFromRegularQueue.Text = "REMOVE FROM REGULAR QUEUE";
+            this.toolTip.SetToolTip(this.buttonRemoveFromRegularQueue, "This button will remove the first drone at the top of the list in the Regular Que" +
+        "ue.");
             this.buttonRemoveFromRegularQueue.UseVisualStyleBackColor = true;
             this.buttonRemoveFromRegularQueue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonRemoveFromRegularQueue_MouseClick);
             // 
@@ -318,46 +379,6 @@
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 20;
             this.statusStrip.Text = "statusStrip";
-            // 
-            // columnHeaderRegServiceProblem
-            // 
-            this.columnHeaderRegServiceProblem.Text = "Service Problem";
-            this.columnHeaderRegServiceProblem.Width = 121;
-            // 
-            // columnHeaderRegServiceCost
-            // 
-            this.columnHeaderRegServiceCost.Text = "Serrvice Cost";
-            this.columnHeaderRegServiceCost.Width = 80;
-            // 
-            // columnHeaderRegServiceTag
-            // 
-            this.columnHeaderRegServiceTag.Text = "Service Tag";
-            this.columnHeaderRegServiceTag.Width = 78;
-            // 
-            // columnHeaderExpClientName
-            // 
-            this.columnHeaderExpClientName.Text = "Client Name";
-            this.columnHeaderExpClientName.Width = 75;
-            // 
-            // columnHeaderExpDroneModel
-            // 
-            this.columnHeaderExpDroneModel.Text = "Drone Model";
-            this.columnHeaderExpDroneModel.Width = 82;
-            // 
-            // columnHeaderExpServiceProblem
-            // 
-            this.columnHeaderExpServiceProblem.Text = "Service Problem";
-            this.columnHeaderExpServiceProblem.Width = 121;
-            // 
-            // columnHeaderExpServiceCost
-            // 
-            this.columnHeaderExpServiceCost.Text = "Service Cost";
-            this.columnHeaderExpServiceCost.Width = 80;
-            // 
-            // columnHeaderExpServiceTag
-            // 
-            this.columnHeaderExpServiceTag.Text = "Service Tag";
-            this.columnHeaderExpServiceTag.Width = 78;
             // 
             // FormDroneServiceApplication
             // 
@@ -432,6 +453,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderExpServiceProblem;
         private System.Windows.Forms.ColumnHeader columnHeaderExpServiceCost;
         private System.Windows.Forms.ColumnHeader columnHeaderExpServiceTag;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

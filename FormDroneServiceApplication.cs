@@ -98,6 +98,13 @@ namespace DroneServiceApplication
             return false;
         }
 
+        /* This will dynamically change the toolTip based on the selected Service Priority */
+        private void ButtonAddNewItem_MouseEnter(object sender, EventArgs e)
+        {
+            string message = "The drone will be added to the " + GetServicePriority() + " queue";
+            toolTip.SetToolTip(buttonAddNewItem, message);
+        }
+
         #endregion
 
         // 6.6	Before a new service item is added to the Express Queue the service cost must be increased by 15%.
