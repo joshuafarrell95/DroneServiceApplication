@@ -6,6 +6,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+// Joshua, M153428
+// Drone Service Application
+// 19/10/2022
+
 namespace DroneServiceApplication
 {
     // 6.1	Create a separate class file to hold the data items of the Drone.
