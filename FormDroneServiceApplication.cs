@@ -286,6 +286,7 @@ namespace DroneServiceApplication
                 DisplayRegularQueue();
                 FinishedList.Add(drone);
                 DisplayFinishedList();
+                ClearAllTextboxes();
             }
             catch (InvalidOperationException ex)
             {
@@ -316,6 +317,7 @@ namespace DroneServiceApplication
                 DisplayExpressQueue();
                 FinishedList.Add(drone);
                 DisplayFinishedList();
+                ClearAllTextboxes();
             }
             catch (InvalidOperationException ex)
             {
